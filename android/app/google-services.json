@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "913198322995",
+    "project_id": "gaplash-20aca",
+    "storage_bucket": "gaplash-20aca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:913198322995:android:176e32cdb18545fc0f5a46",
+        "android_client_info": {
+          "package_name": "com.gaplash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "913198322995-97bjqnjd4r9ugbm914e046ipda9ecglh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkJ8VMVJeijvCD6TEh0GrPRCZ0tH83Zbs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "913198322995-97bjqnjd4r9ugbm914e046ipda9ecglh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
