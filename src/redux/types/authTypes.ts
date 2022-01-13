@@ -5,6 +5,12 @@ export interface IAuthState {
   password: string;
   isLoading: boolean;
   error: string;
+  user: {};
+}
+
+export interface IUser {
+  uid: string;
+  email: string;
 }
 
 export interface IUserLogin {
@@ -21,6 +27,7 @@ export enum EAuthActions {
   SIGN_OUT = 'SIGN_OUT',
   SIGN_UP = 'SIGN_UP',
   SHOW_ERROR = 'SHOW_ERROR',
+  SET_USER = 'SET_USER',
 }
 
 export interface ISetLogin {
@@ -61,6 +68,11 @@ export interface IShowError {
   payload: string;
 }
 
+export interface ISetUser {
+  type: EAuthActions.SET_USER;
+  payload: IUser;
+}
+
 export type TActionTypes =
   | ISetLogin
   | ISetPassword
@@ -69,4 +81,5 @@ export type TActionTypes =
   | ISignIn
   | ISignOut
   | ISignIUp
-  | IShowError;
+  | IShowError
+  | ISetUser;
