@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import {EAuthActions, TActionTypes} from '../types/authTypes';
+import {EAuthActions, TActionTypes, IUser} from '../types/authTypes';
 import auth from '@react-native-firebase/auth';
 
 export const setLogin = (text: string) => {
@@ -28,7 +28,13 @@ export const setAuthPage = (page: string) => {
   };
 };
 
-export const signIn = (login: string, password: string) => {
+export const setUser = (user: IUser) => {
+  return (dispatch: Dispatch<TActionTypes>) => {
+    dispatch({type: EAuthActions.SET_USER, payload: user});
+  };
+};
+
+export const signIn = (login: string, password: string, user: IUser) => {
   try {
     return (dispatch: Dispatch<TActionTypes>) => {
       auth()
@@ -36,10 +42,11 @@ export const signIn = (login: string, password: string) => {
         .then(() => {
           dispatch({
             type: EAuthActions.SIGN_IN,
-            payload: {login, password},
+            payload: {login, password, user},
           }),
             dispatch({type: EAuthActions.SET_IS_LOADING, payload: false});
           dispatch({type: EAuthActions.SHOW_ERROR, payload: ''});
+          dispatch(setUser(user));
         })
         .catch(error => {
           if (error.code === 'auth/email-already-in-use') {
@@ -69,7 +76,7 @@ export const signOut = () => {
   }
 };
 
-export const signUp = (login: string, password: string) => {
+export const signUp = (login: string, password: string, user: IUser) => {
   try {
     return (dispatch: Dispatch<TActionTypes>) => {
       auth()
@@ -81,6 +88,7 @@ export const signUp = (login: string, password: string) => {
           }),
             dispatch({type: EAuthActions.SET_IS_LOADING, payload: false}),
             dispatch({type: EAuthActions.SHOW_ERROR, payload: ''});
+          dispatch({type: EAuthActions.SET_USER, payload: user});
         })
         .catch(error => {
           dispatch({type: EAuthActions.SHOW_ERROR, payload: error.code});

@@ -1,4 +1,9 @@
-import {EAuthActions, IAuthState, TActionTypes} from '../types/authTypes';
+import {
+  EAuthActions,
+  IAuthState,
+  TActionTypes,
+  IUser,
+} from '../types/authTypes';
 
 const initialState: IAuthState = {
   authPage: 'SIGN_IN',
@@ -7,6 +12,7 @@ const initialState: IAuthState = {
   password: '',
   isLoading: false,
   error: '',
+  user: {},
 };
 
 export const authReducer = (state = initialState, action: TActionTypes) => {
@@ -17,6 +23,8 @@ export const authReducer = (state = initialState, action: TActionTypes) => {
       return {...state, password: action.payload};
     case EAuthActions.SET_AUTH_PAGE:
       return {...state, authPage: action.payload};
+    case EAuthActions.SET_USER:
+      return {...state, user: action.payload};
     case EAuthActions.SET_IS_LOADING:
       return {...state, isLoading: action.payload};
     case EAuthActions.SIGN_IN:
@@ -24,6 +32,7 @@ export const authReducer = (state = initialState, action: TActionTypes) => {
         ...state,
         login: action.payload.login,
         password: action.payload.password,
+        user: action.payload.user,
         isSignedIn: true,
         isLoading: false,
       };
